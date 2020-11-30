@@ -1,0 +1,26 @@
+{
+  "name": "tailwind-prototype",
+  "description": "Minimal quick prototyping with tialwind css",
+  "license": "wftpl",
+  "dependencies": {
+    "autoprefixer": "^10.0.4",
+    "global": "^4.4.0",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.13",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "nunjucks": "^3.2.2",
+    "nunjucks-cli": "^1.0.0",
+    "postcss-cli": "^8.3.0"
+  },
+  "scripts": {
+    "sync": "browser-sync start --server 'public' --files \"public/**/*\"",
+    "build:tw": "postcss src/css/style.css --output public/css/style.css",
+    "build:nj": "npx nunjucks \"**/*.html\" data.json -w -p src -o public",
+    "build:all": "run-p build:tw build:nj sync",
+    "watch": "nodemon -x yarn build:all"
+  }
+}
